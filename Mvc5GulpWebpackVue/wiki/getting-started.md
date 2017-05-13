@@ -1,0 +1,11 @@
+﻿[Index](./index.md)
+# Getting Started
+[Step 1:  Create New ASP.Net Project](./getting-started/new-project.md)  
+[Step 2:  Setup Client-Side Configuration](./getting-started/setup-client-side-configuration.md)  
+[Step 3:  Setup NPM](./getting-started/setup-npm.md)  
+[Step 4:  Setup Client Directory Structure](./getting-started/setup-client-directory-structure.md)  
+[Step 5:  Add Vue.js to Razor Part 1](./getting-started/add-vue-to-razor1.md)  
+[Step 6:  Add Vue.js to Razor Part 2](./getting-started/add-vue-to-razor2.md)  
+[Step 7:  Improving our Development Workflow Part 1](./getting-started/improving-our-development-workflow1.md)  
+[Step 8:  Improving our Development Workflow Part 2](./getting-started/improving-our-development-workflow2.md)  
+[Step 9:  Add Client-Side Routing](./getting-started/add-client-side-routing.md)  

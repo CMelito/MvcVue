@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "scripts": {
+    "config": "gulp",
+    "dev": "cross-env NODE_ENV=development webpack --progress",
+    "watch": "cross-env NODE_ENV=development webpack --watch --progress",
+    "prod": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "iisexpress": "iisexpress.bat"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-latest": "^6.24.1",
+    "cross-env": "^4.0.0",
+    "gulp": "^3.9.1",
+    "gulp-file": "^0.3.0",
+    "gulp-filelist": "^1.0.0",
+    "vue-loader": "^11.3.4",
+    "vue-template-compiler": "^2.2.6",
+    "webpack": "^2.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "vue": "^2.2.6",
+    "vue-router": "^2.4.0"
+  },
+  "-vs-binding": {
+    "ProjectOpened": [
+      "install"
+    ],
+    "BeforeBuild": [
+      "config",
+      "dev"
+    ]
+  }
+}
