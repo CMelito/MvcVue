@@ -20,8 +20,9 @@ namespace Mvc5GulpWebpackVue
             var from = ConfigurationManager.AppSettings["twilio:From"];
 
             TwilioClient.Init(sid, token);
-           await  MessageResource.CreateAsync(new PhoneNumber(message.Destination), from: new PhoneNumber(from),
+            await MessageResource.CreateAsync(new PhoneNumber(message.Destination), from: new PhoneNumber(from),
                 body: message.Body);
+
         }
     }
 }

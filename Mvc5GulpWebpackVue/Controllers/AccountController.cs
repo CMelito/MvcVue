@@ -12,13 +12,8 @@ namespace Mvc5GulpWebpackVue.Controllers
 {
     public class AccountController : Controller
     {
-        public UserManager<IdentityUser> UserManager => HttpContext.GetOwinContext().Get<UserManager<IdentityUser>>();
-        public SignInManager<IdentityUser, string> SignInManager => HttpContext.GetOwinContext().Get<SignInManager<IdentityUser, string>>();
-
-        public ActionResult Register()
-        {
-            return View();
-        }
+        public UserManager<CustomUser,int> UserManager => HttpContext.GetOwinContext().Get<UserManager<CustomUser,int>>();
+        public SignInManager<CustomUser, int> SignInManager => HttpContext.GetOwinContext().Get<SignInManager<CustomUser,int>>();
 
         public ActionResult Login()
         {
@@ -61,6 +56,11 @@ namespace Mvc5GulpWebpackVue.Controllers
             return RedirectToAction("TwoFactor", new { provider = model.ChosenProvider });
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<ActionResult> Register(RegisterModel model)
         {
@@ -69,7 +69,7 @@ namespace Mvc5GulpWebpackVue.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            var identityResult = await UserManager.CreateAsync(new IdentityUser(model.Username), model.Password);
+            var identityResult = await UserManager.CreateAsync(new CustomUser {UserName = model.Username }, model.Password);
 
             if (identityResult.Succeeded)
             {

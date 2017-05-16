@@ -14,17 +14,17 @@ namespace Mvc5GulpWebpackVue
     {
         public void Configuration(IAppBuilder app)
         {
-            const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Database=Pluralsight.AspNetIdentity;trusted_connection=true;";
-            app.CreatePerOwinContext(() => new IdentityDbContext(connectionString));
-            app.CreatePerOwinContext<UserStore<IdentityUser>>((opt, cont) => new UserStore<IdentityUser>(cont.Get<IdentityDbContext>()));
-            app.CreatePerOwinContext<UserManager<IdentityUser>>((opt, cont) =>
+            //const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;Database=Pluralsight.AspNetIdentity;trusted_connection=true;";
+            app.CreatePerOwinContext(() => new CustomUserDbContext());
+            app.CreatePerOwinContext<CustomUserStore>((opt, cont) => new CustomUserStore(cont.Get<CustomUserDbContext>()));
+            app.CreatePerOwinContext<UserManager<CustomUser,int>>((opt, cont) =>
             {
-                var userManager = new UserManager<IdentityUser>(cont.Get<UserStore<IdentityUser>>());
-                userManager.RegisterTwoFactorProvider("SMS", new PhoneNumberTokenProvider<IdentityUser> { MessageFormat = "Token: {0}"});
+                var userManager = new UserManager<CustomUser,int>(cont.Get<CustomUserStore>());
+                userManager.RegisterTwoFactorProvider("SMS", new PhoneNumberTokenProvider<CustomUser,int> { MessageFormat = "Token: {0}"});
                 userManager.SmsService = new SmsService();
                 return userManager;
             });
-            app.CreatePerOwinContext<SignInManager<IdentityUser, string>>((opt, cont) => new SignInManager<IdentityUser, string>(cont.Get<UserManager<IdentityUser>>(), cont.Authentication));
+            app.CreatePerOwinContext<SignInManager<CustomUser,int>>((opt, cont) => new SignInManager<CustomUser, int>(cont.Get<UserManager<CustomUser,int>>(), cont.Authentication));
 
             app.UseCookieAuthentication(new Microsoft.Owin.Security.Cookies.CookieAuthenticationOptions
             {

@@ -204,6 +204,7 @@
     <Compile Include="Controllers\Api\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SpaController.cs" />
+    <Compile Include="CustomUser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
